@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>{{ data.id ? 'Edit User' : 'Add User' }}</h1>
+<div mat-dialog-content>
+  <mat-form-field class="w100">
+    <input matInput placeholder="First Name" [(ngModel)]="data.firstName">
+  </mat-form-field>
+  <mat-form-field class="w100">
+    <input matInput placeholder="Last Name" [(ngModel)]="data.lastName">
+  </mat-form-field>
+
+  <mat-form-field class="w100">
+    <mat-label>Date of Birth</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="data.dateOfBirth">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="w100">
+    <mat-select placeholder="Country" [(ngModel)]="data.country">
+      <mat-option *ngFor="let country of countries" [value]="country">{{ country.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data">{{ data.id ? 'Save' : 'Add' }}</button>
+</div>
